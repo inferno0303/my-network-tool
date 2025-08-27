@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+<input id="host" placeholder="输入主机地址">
+<button id="pingBtn">Ping</button>
+<pre id="output"></pre>
+
+<script>
+    const output = document.getElementById('output');
+    const btn = document.getElementById('pingBtn');
+    const hostInput = document.getElementById('host');
+
+    btn.addEventListener('click', () => {
+        output.textContent = '';
+        window.electronAPI.pingHost(hostInput.value);
+    });
+
+    window.electronAPI.onPingOutput((line) => {
+        output.textContent += line;
+    });
+</script>
+</body>
+</html>
